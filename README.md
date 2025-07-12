@@ -1,1 +1,1 @@
-# stackit-odoo
+# rewear-odoo
