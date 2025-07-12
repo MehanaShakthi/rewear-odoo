@@ -1,62 +1,61 @@
-import React, { useState } from 'react';
-import '../styles/Auth.css';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from '../utils/axios';
+import { AuthContext } from '../context/AuthContext';
+import '../styles/Register.css';
 
 const RegisterPage = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // TODO: Connect to backend
-    alert('Registered (dummy)');
+    try {
+      const res = await axios.post('/auth/register', { name, email, password });
+      login(res.data.user);
+      navigate('/dashboard');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Registration failed');
+    }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
-        <h2>Create Your ReWear Account</h2>
-        <form onSubmit={handleRegister}>
-          <label>Name</label>
-          <input
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleRegister}>
+        <h2>Register</h2>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
-          <label>Email</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-          />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-          <button type="submit" className="btn primary">Register</button>
-        </form>
-        <p className="auth-switch">
-          Already have an account? <Link to="/login">Login here</Link>
+        <button type="submit">Register</button>
+
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
-      </div>
+      </form>
     </div>
   );
 };

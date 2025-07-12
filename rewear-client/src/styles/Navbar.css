@@ -45,4 +45,10 @@
   .login-btn:hover {
     background: #1f8c7e;
   }
-  
+  .logout-btn {
+    background: none;
+    border: none;
+    color: #333;
+    margin-left: 1rem;
+    cursor: pointer;
+  }

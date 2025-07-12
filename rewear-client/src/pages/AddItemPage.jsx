@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/AddItemPage.css';
+import { AuthContext } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const AddItemPage = () => {
+  const { user } = useContext(AuthContext);
+  
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -10,9 +15,9 @@ const AddItemPage = () => {
     size: '',
     condition: '',
     tags: '',
-    image: null
+    image: null,
   });
-
+  if (!user) return <Navigate to="/login" />;
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
@@ -23,7 +28,7 @@ const AddItemPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Connect with backend
+    // TODO: Replace this with actual backend integration
     alert('Item listed (dummy)');
     console.log(formData);
   };

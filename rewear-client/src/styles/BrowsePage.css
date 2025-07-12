@@ -1,70 +1,49 @@
 .browse-container {
-    max-width: 1000px;
-    margin: 0 auto;
     padding: 2rem;
   }
   
-  .browse-container h2 {
-    text-align: center;
-    color: #26a69a;
-    margin-bottom: 2rem;
-  }
-  
-  .filters {
+  .filter-bar {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    justify-content: center;
   }
   
-  .filters select {
-    padding: 0.5rem 1rem;
+  .filter-bar select {
+    padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
   
-  .items-grid {
+  .item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    gap: 2rem;
   }
   
   .item-card {
-    border: 1px solid #eee;
-    border-radius: 8px;
+    background: #fff;
+    border: 1px solid #ddd;
     padding: 1rem;
-    background-color: #fff;
     text-align: center;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: 0.2s ease;
   }
   
   .item-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-radius: 6px;
   }
   
   .item-card h4 {
-    margin-top: 0.75rem;
-    color: #333;
+    margin: 0.5rem 0;
   }
   
-  .item-card p {
-    margin: 0.3rem 0;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .btn.secondary {
-    margin-top: 1rem;
-    background-color: #fff;
-    color: #26a69a;
-    border: 1px solid #26a69a;
+  .btn {
     padding: 0.5rem 1rem;
-    border-radius: 5px;
+    background: #007b5e;
+    color: #fff;
+    border: none;
     cursor: pointer;
+    margin-top: 0.5rem;
   }
-
   

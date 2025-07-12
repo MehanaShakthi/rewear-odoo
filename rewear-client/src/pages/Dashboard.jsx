@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { Navigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-  const user = {
-    name: 'Mehana Shakthi',
-    email: 'mehana@example.com',
-    points: 120,
-  };
+  const { user } = useContext(AuthContext);
+  if (!user) return <Navigate to="/login" />;
 
   const uploadedItems = [
     { title: 'Striped T-Shirt', status: 'Available' },
