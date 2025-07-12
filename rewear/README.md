@@ -1,70 +1,185 @@
-# Getting Started with Create React App
+# ReWear - Community Clothing Exchange Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ReWear is a full-stack web application built with the MERN stack (MongoDB, Express.js, React, Node.js) that enables users to exchange unused clothing through direct swaps or a point-based redemption system. The platform promotes sustainable fashion and reduces textile waste by encouraging users to reuse wearable garments.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### 🌟 Core Features
+- **User Authentication**: Secure email/password signup and login
+- **Item Management**: Upload, edit, and manage clothing items
+- **Swap System**: Direct item swaps and point-based redemption
+- **Community Driven**: Connect with like-minded sustainable fashion enthusiasts
+- **Admin Panel**: Moderate and approve/reject item listings
+- **Responsive Design**: Beautiful, modern UI that works on all devices
 
-### `npm start`
+### 📱 User Features
+- **Landing Page**: Platform introduction with featured items carousel
+- **User Dashboard**: Profile details, points balance, and swap history
+- **Item Detail Pages**: Full item descriptions with image galleries
+- **Search & Filter**: Find items by category, size, condition, and more
+- **Rating System**: Rate users after successful swaps
+- **Points System**: Earn and spend points for item redemption
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🔐 Admin Features
+- **Item Moderation**: Approve/reject new item listings
+- **User Management**: Monitor user activity and statistics
+- **Platform Analytics**: View overall platform statistics
+- **Content Management**: Remove inappropriate or spam items
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - JSON Web Token authentication
+- **Bcrypt** - Password hashing
+- **Multer** - File upload handling
+- **Express Validator** - Input validation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- **React** - UI library
+- **React Router** - Client-side routing
+- **Context API** - State management
+- **Axios** - HTTP client
+- **React Icons** - Icon library
+- **React Toastify** - Notification system
+- **CSS3** - Modern styling with CSS variables
 
-### `npm run build`
+## Installation & Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- npm or yarn package manager
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Navigate to the backend directory:**
+   ```bash
+   cd rewear/backend
+   ```
 
-### `npm run eject`
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Configure environment variables:**
+   Create a `.env` file in the backend directory with:
+   ```env
+   NODE_ENV=development
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/rewear
+   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+   UPLOAD_DIR=uploads
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Start MongoDB:**
+   Make sure MongoDB is running on your system.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. **Start the backend server:**
+   ```bash
+   npm run dev
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend Setup
 
-## Learn More
+1. **Navigate to the frontend directory:**
+   ```bash
+   cd rewear
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Start the frontend development server:**
+   ```bash
+   npm start
+   ```
 
-### Code Splitting
+4. **Open the application:**
+   Navigate to `http://localhost:3000` in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Endpoints
 
-### Analyzing the Bundle Size
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/profile` - Update user profile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Items
+- `GET /api/items` - Get all approved items (with filters)
+- `GET /api/items/featured` - Get featured items
+- `GET /api/items/:id` - Get item by ID
+- `POST /api/items` - Create new item
+- `PUT /api/items/:id` - Update item
+- `DELETE /api/items/:id` - Delete item
+- `POST /api/items/:id/like` - Like/unlike item
 
-### Making a Progressive Web App
+### Swaps
+- `GET /api/swaps` - Get user's swaps
+- `POST /api/swaps` - Create swap request
+- `PUT /api/swaps/:id/respond` - Accept/reject swap
+- `PUT /api/swaps/:id/complete` - Mark swap as completed
+- `POST /api/swaps/:id/rate` - Rate completed swap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Admin
+- `GET /api/admin/items` - Get items for moderation
+- `PUT /api/admin/items/:id/approve` - Approve item
+- `PUT /api/admin/items/:id/reject` - Reject item
+- `GET /api/admin/stats` - Get platform statistics
 
-### Advanced Configuration
+## Database Schema
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### User Model
+- Email, password, first name, last name
+- Points balance, admin status
+- Profile information (bio, location, profile picture)
+- Items uploaded and swap history
+- Rating and total ratings
 
-### Deployment
+### Item Model
+- Title, description, category, size, condition
+- Images, tags, brand, color, material
+- Points value, status, approval status
+- Owner reference and view count
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Swap Model
+- Initiator and recipient users
+- Items involved in swap
+- Swap type (item-swap or point-redemption)
+- Status, messages, meeting details
+- Ratings and completion date
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We welcome contributions to ReWear! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Icons by [React Icons](https://react-icons.github.io/react-icons/)
+- UI inspiration from modern design systems
+- Community-driven development approach
+
+## Support
+
+For support, please email support@rewear.com or create an issue on GitHub.
+
+---
+
+**Built with ❤️ for a sustainable future**
